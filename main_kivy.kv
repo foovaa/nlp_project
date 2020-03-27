@@ -1,0 +1,269 @@
+#:kivy 1.11.1
+
+<PagesScreenManager>:
+    Wellcome:
+    EnglishPage:
+    PersianPage:
+
+
+<BackgroundColor@Widget>:
+    background_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: root.size
+            pos: root.pos
+
+<BackgroundLabel@Label+BackgroundColor>:
+    background_color: 0, 0, 0, 0
+
+
+<Wellcome>:
+    kivy_text: 'pango'
+    name: 'wellcome'
+    GridLayout:
+        cols: 2
+        BoxLayout:
+            orientation: 'vertical'
+            BackgroundLabel:
+                background_color: .2, .3, .4, 1
+                text: 'Project: Natural language process '
+            BackgroundLabel:
+                background_color: .2, .3, .4, 1
+                text: 'Professor: Abdolhamid pileh var'
+            BackgroundLabel:
+                background_color: .2, .3, .4, 1
+                text: 'Student: Sadegh ipaki joo'
+            BackgroundLabel:
+                background_color: .2, .3, .4, 1
+                text: 'Student-id: 9512358057'
+
+
+        GridLayout:
+            rows: 2
+
+            Button:
+                text: 'English'
+                on_release:
+                    app.root.current = 'englishPage'
+                    app.root.transition.direction = 'left'
+            Button:
+                text: 'Farsi'
+                on_release:
+                    app.root.current = 'persianPage'
+                    app.root.transition.direction = 'left'
+
+
+
+<EnglishPage>:
+    name: 'englishPage'
+    text_input: text_input
+
+    GridLayout:
+        rows: 2
+
+        ActionBar:
+            pos_hint: {'top':1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    app_icon: 'logo_nlp.png'
+                    with_previous: True
+                    on_release:
+                        app.root.current = 'wellcome'
+                        app.root.transition.direction = 'right'
+
+                ActionButton:
+                    text: 'Load'
+                    on_release: root.callLoadDialog()
+
+                ActionGroup:
+                    text: 'N-Grams' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: '2-Grams'
+                        on_release: root.ngramsCorpus(2)
+                    ActionButton:
+                        text: '3-Grams'
+                        on_release: root.ngramsCorpus(3)
+                    ActionButton:
+                        text: '4-Grams'
+                        on_release: root.ngramsCorpus(4)
+
+                ActionGroup:
+                    text: 'Export' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Frequency'
+                        on_release: root.frequencyCorpus()
+                    ActionButton:
+                        text: 'Spellchecker'
+                        on_release: root.nothingForNowPopup(self.text, 'Nothing for now!')
+                    ActionButton:
+                        text: 'Tokenize'
+                        on_release: root.tokenizeCorpus()
+                    ActionButton:
+                        text: 'Lemmatize'
+                        on_release: root.lemmatizeCorpus()
+                    ActionButton:
+                        text: 'Stemmer'
+                        on_release: root.stemmCorpus()
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            rows: 1
+
+            TextInput:
+                id: text_input
+                text: text_input.text
+
+
+
+
+
+
+<PersianPage>:
+    name: 'persianPage'
+    text_input: text_input
+
+    GridLayout:
+        rows: 2
+
+        ActionBar:
+            pos_hint: {'top':1}
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    app_icon: 'logo_nlp.png'
+                    with_previous: True
+                    on_release:
+                        app.root.current = 'wellcome'
+                        app.root.transition.direction = 'right'
+
+                ActionButton:
+                    text: 'Load'
+                    on_release: root.callLoadDialog()
+
+                ActionGroup:
+                    text: 'N-Grams' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: '2-Grams'
+                        on_release: root.ngramsCorpus(2)
+                    ActionButton:
+                        text: '3-Grams'
+                        on_release: root.ngramsCorpus(3)
+                    ActionButton:
+                        text: '4-Grams'
+                        on_release: root.ngramsCorpus(4)
+
+                ActionGroup:
+                    text: 'Export' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Frequency'
+                        on_release: root.frequencyCorpus()
+                    ActionButton:
+                        text: 'Spellchecker'
+                        on_release: root.nothingForNowPopup(self.text, 'Nothing for now!')
+                    ActionButton:
+                        text: 'Tokenize'
+                        on_release: root.tokenizeCorpus()
+                    ActionButton:
+                        text: 'Lemmatize'
+                        on_release: root.lemmatizeCorpus()
+                    ActionButton:
+                        text: 'Stemmer'
+                        on_release: root.stemmCorpus()
+                    ActionButton:
+                        text: 'Qoutes'
+                        on_release: root.stemmCorpus()
+                    ActionButton:
+                        text: 'Aliens'
+                        on_release: root.stemmCorpus()
+
+        BoxLayout:
+            orientation: 'horizontal'
+            rows: 1
+
+            TextInput:
+                id: text_input
+                font_name: 'B-NAZANIN.TTF'
+                base_directioin: 'rtl'
+                text: text_input.text
+                multiline: True
+
+
+
+
+
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: '.'
+            multiselect: False
+            filters: ['*.txt', '*.csv', '*.dat']
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: 80
+
+            Label:
+                text: 'Acceptable formats:  .txt  .dat  .csv'
+                
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Button:
+                    text: "Load"
+                    on_release: root.load(filechooser.selection)
+                
+                Button:
+                    text: "Cancel"
+                    on_release: root.cancel()
+
+
+
+
+<SaveDialog>:
+    text_input: text_input
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+            rootpath: '.'
+
+
+        TextInput:
+            id: text_input
+            size_hint_y: None
+            height: 40
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            Button:
+                text: "Save"
+                on_release: root.save(filechooser.path, text_input.text)
+
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+
+
