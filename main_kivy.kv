@@ -49,7 +49,7 @@
                     app.root.current = 'englishPage'
                     app.root.transition.direction = 'left'
             Button:
-                text: 'Farsi'
+                text: 'Persian'
                 on_release:
                     app.root.current = 'persianPage'
                     app.root.transition.direction = 'left'
@@ -92,6 +92,16 @@
                         on_release: root.ngramsCorpus(4)
 
                 ActionGroup:
+                    text: 'Tokenize' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Word'
+                        on_release: root.tokenizeCorpus(True)
+                    ActionButton:
+                        text: 'Sentence'
+                        on_release: root.tokenizeCorpus(False)
+                
+                ActionGroup:
                     text: 'Export' 
                     mode: 'spinner'
                     ActionButton:
@@ -100,9 +110,6 @@
                     ActionButton:
                         text: 'Spellchecker'
                         on_release: root.nothingForNowPopup(self.text, 'Nothing for now!')
-                    ActionButton:
-                        text: 'Tokenize'
-                        on_release: root.tokenizeCorpus()
                     ActionButton:
                         text: 'Lemmatize'
                         on_release: root.lemmatizeCorpus()
@@ -117,6 +124,7 @@
 
             TextInput:
                 id: text_input
+                font_size: '18dp'
                 text: text_input.text
 
 
@@ -160,6 +168,16 @@
                         on_release: root.ngramsCorpus(4)
 
                 ActionGroup:
+                    text: 'Tokenize' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Word'
+                        on_release: root.tokenizeCorpus(True)
+                    ActionButton:
+                        text: 'Sentence'
+                        on_release: root.tokenizeCorpus(False)
+
+                ActionGroup:
                     text: 'Export' 
                     mode: 'spinner'
                     ActionButton:
@@ -168,9 +186,6 @@
                     ActionButton:
                         text: 'Spellchecker'
                         on_release: root.nothingForNowPopup(self.text, 'Nothing for now!')
-                    ActionButton:
-                        text: 'Tokenize'
-                        on_release: root.tokenizeCorpus()
                     ActionButton:
                         text: 'Lemmatize'
                         on_release: root.lemmatizeCorpus()
@@ -191,6 +206,7 @@
             TextInput:
                 id: text_input
                 font_name: 'B-NAZANIN.TTF'
+                font_size: '18dp'
                 base_directioin: 'rtl'
                 text: text_input.text
                 multiline: True

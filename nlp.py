@@ -1,10 +1,11 @@
 from statics import PERSIAN_QUOTES, ALIEN_WORDS, ALIENS
 
 from nltk import ngrams
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 from hazm.WordTokenizer import WordTokenizer
+from hazm.SentenceTokenizer import SentenceTokenizer
 from hazm import Stemmer
 from hazm import Lemmatizer
 
@@ -34,12 +35,15 @@ class Persian():
         return result
 
 
-    def get_tokenized(self, document):
+    def get_tokenized_words(self, document):
         ''' perisna tokenizer '''
         content = self.clear_document(document)
-        word_tokenizer = WordTokenizer()
-        tokenized_content = word_tokenizer.tokenize(content)
-        return tokenized_content
+        return WordTokenizer().tokenize(content)
+
+    def get_tokenized_sentence(self, document):
+        ''' perisna tokenizer '''
+        return SentenceTokenizer().tokenize(document)
+
 
     def get_frequency(self, document):
         ''' remove repeated words and count '''
@@ -82,7 +86,7 @@ class Persian():
 
     def get_alien_words(self, document):
         output = []
-        content = self.get_tokenized(document)
+        content = self.get_tokenized_words(document)
         for item in content:
             for lang in ALIEN_WORDS:
                 if item in lang:
@@ -118,11 +122,17 @@ class English():
         return result
 
 
-    def english_tokenizer(self, document):
+    def get_tokenized_words(self, document):
         ''' perisna tokenizer '''
         content = self.clear_document(document)
         tokenized_content = word_tokenize(content)
         return tokenized_content
+
+
+    def get_tokenized_sentence(self, document):
+        ''' perisna tokenizer '''
+        return sent_tokenize(document)
+
 
     def english_frequency(self, document):
         ''' remove repeated words and count '''

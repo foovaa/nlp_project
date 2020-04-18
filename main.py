@@ -64,21 +64,20 @@ class EnglishPage(Screen):
         super(EnglishPage, self).__init__(**kwargs)
         self.corpus = ''
         self.output = ''
+        self.obj = English()
     
     '''
         Primary methods
     '''
-    def tokenizeCorpus(self):
+    def tokenizeCorpus(self, flag):
         try:
-            obj = English()
-            self.output = obj.english_tokenizer(self.corpus)        
+            self.output = self.obj.get_tokenized_words(self.corpus) if flag else self.obj.get_tokenized_sentence(self.corpus)        
             self.callSaveDialog()
         except:
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
             
     def lemmatizeCorpus(self):
         try:
-            obj = English()
             self.output = obj.english_lemmatizer(self.corpus)        
             self.callSaveDialog()
         except:
@@ -86,7 +85,6 @@ class EnglishPage(Screen):
             
     def stemmCorpus(self):
         try:
-            obj = English()
             self.output = obj.english_stemmer(self.corpus)        
             self.callSaveDialog()
         except:
@@ -95,7 +93,6 @@ class EnglishPage(Screen):
 
     def frequencyCorpus(self):
         try:
-            obj = English()
             self.output = obj.english_frequency(self.corpus)        
             self.callSaveDialog()
         except:
@@ -104,7 +101,6 @@ class EnglishPage(Screen):
 
     def ngramsCorpus(self, order):
         try:
-            obj = English()
             self.output = obj.english_ngrams(self.corpus, order)        
             self.callSaveDialog()
         except:
@@ -171,23 +167,24 @@ class PersianPage(Screen):
         super(PersianPage, self).__init__(**kwargs)
         self.corpus = ''
         self.output = ''
+        self.obj = Persian()
     '''
         Primary methods
     '''
     '''
         Primary methods
     '''
-    def tokenizeCorpus(self):
+    def tokenizeCorpus(self, flag):
         try:
-            obj = Persian()
-            self.output = obj.get_tokenized(self.corpus)        
+            # if flag:
+            #     self.output = obj.get_(self.corpus) 
+            self.output = self.obj.get_tokenized_words(self.corpus) if flag else self.obj.get_tokenized_sentence(self.corpus)         
             self.callSaveDialog()
         except:
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
             
     def lemmatizeCorpus(self):
         try:
-            obj = Persian()
             self.output = obj.get_lemmatizer(self.corpus)        
             self.callSaveDialog()
         except:
@@ -195,7 +192,6 @@ class PersianPage(Screen):
             
     def stemmCorpus(self):
         try:
-            obj = Persian()
             self.output = obj.get_stemmer(self.corpus)        
             self.callSaveDialog()
         except:
@@ -204,7 +200,6 @@ class PersianPage(Screen):
 
     def frequencyCorpus(self):
         try:
-            obj = Persian()
             self.output = obj.get_frequency(self.corpus)        
             self.callSaveDialog()
         except:
@@ -213,7 +208,6 @@ class PersianPage(Screen):
 
     def ngramsCorpus(self, order):
         try:
-            obj = Persian()
             self.output = obj.get_ngrams(self.corpus, order)        
             self.callSaveDialog()
         except:
@@ -222,7 +216,6 @@ class PersianPage(Screen):
 
     def quotesCorpus(self, order):
         try:
-            obj = Persian()
             self.output = obj.get_quotes(self.corpus)        
             self.callSaveDialog()
         except:
@@ -231,7 +224,6 @@ class PersianPage(Screen):
             
     def aliensCorpus(self, order):
         try:
-            obj = Persian()
             self.output = obj.get_alien_words(self.corpus)        
             self.callSaveDialog()
         except:
