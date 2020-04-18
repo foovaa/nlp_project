@@ -76,6 +76,14 @@ class EnglishPage(Screen):
         except:
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
             
+    def tagCorpus(self):
+        try:
+            self.output = self.obj.get_pos_tag(self.corpus)
+            self.callSaveDialog()
+        except:
+            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+
+
     def lemmatizeCorpus(self):
         try:
             self.output = obj.english_lemmatizer(self.corpus)        
@@ -183,6 +191,15 @@ class PersianPage(Screen):
         except:
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
             
+
+    def tagCorpus(self):
+        try:
+            self.output = self.obj.get_pos_tag(self.corpus)
+            self.callSaveDialog()
+        except:
+            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+
+
     def lemmatizeCorpus(self):
         try:
             self.output = obj.get_lemmatizer(self.corpus)        

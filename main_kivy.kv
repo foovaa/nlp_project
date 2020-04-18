@@ -42,7 +42,6 @@
 
         GridLayout:
             rows: 2
-
             Button:
                 text: 'English'
                 on_release:
@@ -116,7 +115,9 @@
                     ActionButton:
                         text: 'Stemmer'
                         on_release: root.stemmCorpus()
-
+                    ActionButton:
+                        text: 'Tagger'
+                        on_release: root.tagCorpus()
 
         BoxLayout:
             orientation: 'horizontal'
@@ -198,6 +199,9 @@
                     ActionButton:
                         text: 'Aliens'
                         on_release: root.stemmCorpus()
+                    ActionButton:
+                        text: 'Tagger'
+                        on_release: root.tagCorpus()
 
         BoxLayout:
             orientation: 'horizontal'
