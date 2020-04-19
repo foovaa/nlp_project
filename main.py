@@ -84,6 +84,26 @@ class EnglishPage(Screen):
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
 
 
+            
+    def spellCheckCorpus(self):
+        try:
+            self.output = self.obj.get_spellchecker(self.corpus)
+            self.callSaveDialog()
+        except:
+            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+
+
+            
+    def dictionaries(self, which_dictionary):
+        try:
+            self.output = self.obj.get_dictionaries(self.corpus, which_dictionary)
+            self.callSaveDialog()
+        except:
+            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+
+
+
+
     def lemmatizeCorpus(self):
         try:
             self.output = obj.english_lemmatizer(self.corpus)        
@@ -214,6 +234,15 @@ class PersianPage(Screen):
         except:
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
             
+
+            
+    def dictionaries(self, which_dictionary):
+        try:
+            self.output = self.obj.get_dictionaries(self.corpus, which_dictionary)
+            self.callSaveDialog()
+        except:
+            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+
 
     def frequencyCorpus(self):
         try:

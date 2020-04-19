@@ -91,6 +91,21 @@
                         on_release: root.ngramsCorpus(4)
 
                 ActionGroup:
+                    text: 'Dictionaries' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Computer'
+                        on_release: root.dictionaries(0)
+                    ActionButton:
+                        text: 'Medical'
+                        on_release: root.dictionaries(1)
+                    ActionButton:
+                        text: 'Sport'
+                        on_release: root.dictionaries(2)
+                                
+                
+                
+                ActionGroup:
                     text: 'Tokenize' 
                     mode: 'spinner'
                     ActionButton:
@@ -100,6 +115,8 @@
                         text: 'Sentence'
                         on_release: root.tokenizeCorpus(False)
                 
+
+
                 ActionGroup:
                     text: 'Export' 
                     mode: 'spinner'
@@ -108,7 +125,7 @@
                         on_release: root.frequencyCorpus()
                     ActionButton:
                         text: 'Spellchecker'
-                        on_release: root.nothingForNowPopup(self.text, 'Nothing for now!')
+                        on_release: root.spellCheckCorpus()
                     ActionButton:
                         text: 'Lemmatize'
                         on_release: root.lemmatizeCorpus()
@@ -169,6 +186,19 @@
                         on_release: root.ngramsCorpus(4)
 
                 ActionGroup:
+                    text: 'Dictionaries' 
+                    mode: 'spinner'
+                    ActionButton:
+                        text: 'Computer'
+                        on_release: root.dictionaries(0)
+                    ActionButton:
+                        text: 'Medical'
+                        on_release: root.dictionaries(1)
+                    ActionButton:
+                        text: 'Sport'
+                        on_release: root.dictionaries(2)                        
+
+                ActionGroup:
                     text: 'Tokenize' 
                     mode: 'spinner'
                     ActionButton:
@@ -186,7 +216,7 @@
                         on_release: root.frequencyCorpus()
                     ActionButton:
                         text: 'Spellchecker'
-                        on_release: root.nothingForNowPopup(self.text, 'Nothing for now!')
+                        on_release: root.spellCheckCorpus()
                     ActionButton:
                         text: 'Lemmatize'
                         on_release: root.lemmatizeCorpus()
