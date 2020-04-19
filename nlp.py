@@ -114,7 +114,6 @@ class Persian():
             for lang in ALIEN_WORDS:
                 if item in lang:
                     output.append([item, ALIENS[ALIEN_WORDS.index(lang)]])
-
         return output
 
 
@@ -219,7 +218,10 @@ class English():
 
 
 
-
+# with open('../nlp1/fa_text.txt') as ff:
+#     obj = Persian()
+#     doc = ff.read()
+#     print(obj.get_alien_words(doc))
 
 
 
