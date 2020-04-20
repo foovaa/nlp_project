@@ -81,7 +81,7 @@ class EnglishPage(Screen):
             self.output = self.obj.get_pos_tag(self.corpus)
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Tagger', 'Error: Taggeing failed!')
 
 
             
@@ -90,7 +90,7 @@ class EnglishPage(Screen):
             self.output = self.obj.get_spellchecker(self.corpus)
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Spellchecker', 'Error: Spelling failed!')
 
 
             
@@ -99,7 +99,7 @@ class EnglishPage(Screen):
             self.output = self.obj.get_dictionaries(self.corpus, which_dictionary)
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Dictionaries', 'Error: Making dictionary failed!')
 
 
 
@@ -109,14 +109,14 @@ class EnglishPage(Screen):
             self.output =self.obj.english_lemmatizer(self.corpus)        
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Lemmatizer', 'Error: Lemmatizing failed!')
             
     def stemmCorpus(self):
         try:
             self.output =self.obj.english_stemmer(self.corpus)        
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Stemmer', 'Error: Stemming failed!')
             
 
     def frequencyCorpus(self):
@@ -124,7 +124,7 @@ class EnglishPage(Screen):
             self.output =self.obj.english_frequency(self.corpus)        
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Frequency', 'Error: Take frequency of words failed!')
             
 
     def ngramsCorpus(self, order):
@@ -132,7 +132,7 @@ class EnglishPage(Screen):
             self.output =self.obj.english_ngrams(self.corpus, order)        
             self.callSaveDialog()
         except:
-            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            self.nothingForNowPopup('Grams', 'Error: Grams failed!')
             
 
 
@@ -176,7 +176,7 @@ class EnglishPage(Screen):
                 for item in self.output:
                     stream.write('%s\n'%str(item))
             self.dismissPopup()
-            self.nothingForNowPopup('Output', 'Successful output saved!')
+            self.nothingForNowPopup('Output', 'Output Successfully saved!')
         except:
             self.dismissPopup()
             self.nothingForNowPopup('Output', 'Save output failed!')
@@ -225,6 +225,16 @@ class PersianPage(Screen):
         except:
             self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
             
+
+    def spellCheckCorpus(self):
+        try:
+            self.output = self.obj.get_spellchecker(self.corpus)        
+            self.callSaveDialog()
+        except:
+            self.nothingForNowPopup('Tokenize', 'Error: Tokenizing failed!')
+            
+
+
     def stemmCorpus(self):
         try:
             self.output = self.obj.get_stemmer(self.corpus)        
@@ -314,7 +324,7 @@ class PersianPage(Screen):
                 for item in self.output:
                     stream.write('%s\n'%str(item))
             self.dismissPopup()
-            self.nothingForNowPopup('Output', 'Successful output saved!')
+            self.nothingForNowPopup('Output', 'Output Successfully saved!')
         except:
             self.dismissPopup()
             self.nothingForNowPopup('Output', 'Save output failed!')

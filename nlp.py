@@ -68,6 +68,15 @@ class Persian():
         return tagger.parse(self.get_tokenized_words(document))
 
 
+    def get_spellchecker(self, document):
+        output = []
+        content = self.get_tokenized_words(document)
+        for item in content:
+            for tike in CORRECTION_DB:
+                if item in tike[0]:
+                    output.append([tike[1], item])
+        return output
+
     def get_frequency(self, document):
         ''' remove repeated words and count '''
         content = self.clear_document(document)
@@ -218,10 +227,10 @@ class English():
 
 
 
-# with open('../nlp1/fa_text.txt') as ff:
-#     obj = Persian()
-#     doc = ff.read()
-#     print(obj.get_alien_words(doc))
+with open('../nlp1/fa_text.txt') as ff:
+    obj = Persian()
+    doc = ff.read()
+    print(obj.get_spellchecker(doc))
 
 
 
